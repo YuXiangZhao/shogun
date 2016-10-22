@@ -54,7 +54,6 @@ FOREACH(REFERENCE_FILE ${META_INTEGRATION_REFERENCES})
 		MESSAGE(WARNING "Skipping integration test for meta example ${REL_DIR}/${NAME}.sg")
 	ELSE()
 		# cpp
-		# TODO implement other languages tests
 		IF(HAVE_CXX0X OR HAVE_CXX11)
 		    SET(INTERFACES cpp python java r octave csharp ruby)
 		    AddMetaIntegrationTest(cpp)
