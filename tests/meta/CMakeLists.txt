@@ -56,11 +56,15 @@ FOREACH(REFERENCE_FILE ${META_INTEGRATION_REFERENCES})
 		# cpp
 		# TODO implement other languages tests
 		IF(HAVE_CXX0X OR HAVE_CXX11)
-		    SET(INTERFACES "cpp;python;java;r;octave;csharp;ruby")
-		    # "lua" currently doesn't have meta examples
-		    FOREACH (INTERFACE IN LISTS ${INTERFACES})
-			    AddMetaIntegrationTest(${INTERFACE})
-			ENDFOREACH()
+		    SET(INTERFACES cpp python java r octave csharp ruby)
+		    AddMetaIntegrationTest(cpp)
+		    AddMetaIntegrationTest(python)
+		    AddMetaIntegrationTest(java)
+		    AddMetaIntegrationTest(r)
+		    AddMetaIntegrationTest(octave)
+		    AddMetaIntegrationTest(csharp)
+		    AddMetaIntegrationTest(ruby)
+		    #AddMetaIntegrationTest(lua) # currently doesn't have meta examples
 		ELSE()
 			MESSAGE(WARNING "Skipping C++ meta integration tests; requires a c++11 compatible compiler.")
 		ENDIF()
