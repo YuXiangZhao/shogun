@@ -52,15 +52,17 @@ function (shogun_discover_tests EXECUTABLE)
             VERBATIM)
 endfunction ()
 
-MACRO(AddMetaIntegrationTest target)
-add_test(NAME integration_meta_${target}-${NAME_WITH_DIR}
-                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                COMMAND meta_example_integration_tester ${REL_DIR} ${NAME}.dat ${target} generated_results reference_results)
-            set_tests_properties(
-                integration_meta_${target}-${NAME_WITH_DIR}
-	                PROPERTIES
-	                DEPENDS generated_${target}-${NAME}
-            )
+MACRO(AddMetaIntegrationTest META_TARGET CONDITION)
+    IF (${CONDITION})
+        add_test(NAME integration_meta_${META_TARGET}-${NAME_WITH_DIR}
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                        COMMAND meta_example_integration_tester ${REL_DIR} ${NAME}.dat ${META_TARGET} generated_results reference_results)
+                    set_tests_properties(
+                        integration_meta_${META_TARGET}-${NAME_WITH_DIR}
+	                        PROPERTIES
+	                        DEPENDS generated_${META_TARGET}-${NAME}
+                    )
+    ENDIF()
 ENDMACRO()
 
 
